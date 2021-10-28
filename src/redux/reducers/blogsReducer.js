@@ -25,10 +25,11 @@ const blogsReducer = (blogs = [], action) => {
       return [...blogs, action.payload];
 
     case "UPDATE_BLOG":
-      let updatedBlogs = [...blogs];
-      updatedBlogs.splice(blogs.indexOf(action.payload), 1, action.payload);
-      return updatedBlogs;
 
+      const filterdBlogs = blogs.filter(
+        (filterdBlog) => filterdBlog.id !== action.payload.id);
+      return [...filterdBlogs, action.payload];
+      
     case "REMOVE_BLOG":
       let newBlogs = [...blogs];
       newBlogs.splice(blogs.indexOf(action.payload), 1);
